@@ -4,7 +4,6 @@ You are given two non-empty linked lists representing two non-negative integers.
 You may assume the two numbers do not contain any leading zero, except the number 0 itself.
 """
 
-
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
@@ -13,6 +12,10 @@ class ListNode:
 
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        """
+        T(n) = O(n)
+        S(n) = O(n)
+        """
         num_l1 = self.list_to_num(self.reverse_linked_list(l1))
         num_l2 = self.list_to_num(self.reverse_linked_list(l2))
         num_l3 = num_l1 + num_l2
