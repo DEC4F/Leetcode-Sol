@@ -16,35 +16,20 @@ class Solution:
         T(n) = O(n)
         S(n) = O(n)
         """
-        num_l1 = self.list_to_num(self.reverse_linked_list(l1))
-        num_l2 = self.list_to_num(self.reverse_linked_list(l2))
-        num_l3 = num_l1 + num_l2
-        return self.reverse_linked_list(self.num_to_list(num_l3))
-
-    def list_to_num(self, l: ListNode) -> int:
-        curr = l
-        n = []
-        while curr != None:
-            n.append(curr.val)
+        carry = 0
+        curr = ListNode(0)
+        head = curr
+        while l1 or l2 or carry:
+            val1 = val2 = 0
+            if l1:
+                val1 = l1.val
+                l1 = l1.next
+            if l2:
+                val2 = l2.val
+                l2 = l2.next
+            carry, r = divmod(val1 + val2 + carry, 10)
+            curr.next = ListNode(r)
             curr = curr.next
-        return int(''.join(list(map(str, n))))
-
-    def num_to_list(self, n: int) -> ListNode:
-        n = [int(x) for x in str(n)]
-        head = ListNode(n.pop(0))
-        curr = head
-        while n:
-            l = ListNode(n.pop(0))
-            curr.next = l
-            curr = l
-        return head
-
-    def reverse_linked_list(self, head:ListNode) -> ListNode:
-        prev = None
-        curr = head
-        while curr != None:
-            next = curr.next
-            curr.next = prev
-            prev, curr = curr, next
-        return prev
+        # skipping trailing 0 in the head
+        return head.next
 
