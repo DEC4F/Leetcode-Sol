@@ -1,5 +1,9 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
+        """
+        T(n) = O(n^2)
+        S(n) = O(1)
+        """
         if len(s) < 2:
             return s
         lo = 0
