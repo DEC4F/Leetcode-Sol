@@ -1,4 +1,13 @@
+/**
+ Given a 32-bit signed integer, reverse digits of an integer.
+ */
+
 class Solution {
+
+    /**
+       T(n) = O(n)
+       S(n) = O(1)
+     */
     public int reverse(int x) {
         int result = 0;
         while (x != 0) {
