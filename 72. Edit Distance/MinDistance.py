@@ -18,20 +18,15 @@ class Solution:
         n = len(word2)
         if m*n == 0:
             return m+n
-
-        dist = [[0]*(n+1) for _ in range(m+1)]
+        dist = [[-1]*(n+1) for _ in range(m+1)]
         for i in range(1, m+1):
             dist[i][0] = i
         for j in range(1, n+1):
             dist[0][j] = j
-        
         for i in range(1, m+1):
             for j in range(1, n+1):
-                left = dist[i][j-1]
-                down = dist[i-1][j]
-                left_down = dist[i-1][j-1]
                 if word1[i-1] == word2[j-1]:
-                    dist[i][j] = 1 + min(left, down, left_down-1)
+                    dist[i][j] = 1 + min(dist[i-1][j], dist[i][j-1], dist[i-1][j-1]-1)
                 else:
-                    dist[i][j] = 1 + min(left, down, left_down)
+                    dist[i][j] = 1 + min(dist[i-1][j], dist[i][j-1], dist[i-1][j-1])
         return dist[m][n]

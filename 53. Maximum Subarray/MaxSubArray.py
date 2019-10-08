@@ -18,30 +18,59 @@ class Solution:
                 ans = subarr_sum
         return ans
 
-    def maxSubArray_DC(self, nums: List[int], l: int, r: int) -> int:
+    def maxSubArray_DC(self, nums: List[int], lo: int, hi: int) -> int:
         """
-        T(n) = 2T(n/2) + cn = O(nlogn) -- by master theorem case 2
-        S(n) = O(logn) -- recursion stack
+        T(n) = 2T(n/2) + cn = O(nlogn) by master theoream case 2
+        S(n) = O(logn) -- recursion stack size, splitted in half each level
         """
-        if l == r:
-            return nums[l]
-        mid = (l+r)//2
-        left_max = self.helper(nums, l, mid) # T(n/2)
-        right_max = self.helper(nums, mid+1, r) # T(n/2)
-        crossing_max = self.maxCrossingSubArray(nums, l, r, mid) # O(n)
-        return max(left_max, right_max, crossing_max)
-
-    def maxCrossingSubArray(self, nums: List[int], l: int, r: int, mid: int) -> int:
-        l_max_sum = float('-inf')
+        if lo == hi:
+            return nums[lo]
+        mid = (hi+lo)//2
+        max_left = self.maxSubArray_DC(nums, lo, mid)
+        max_right = self.maxSubArray_DC(nums, mid+1, hi)
+        max_crossing = self.maxCrossingSubArray(nums, lo, mid, hi)
+        return max(max_left, max_right, max_crossing)
+    
+    def maxCrossingSubArray(self, nums:List[int], lo: int, mid: int, hi: int) -> int:
+        """
+        T(n) = O(n)
+        """
+        left_sum = float('-inf')
         curr_sum = 0
-        for i in range(mid, l-1, -1):
+        for i in range(mid, lo-1, -1):
             curr_sum += nums[i]
-            l_max_sum = max(curr_sum, l_max_sum)
+            left_sum = max(curr_sum, left_sum)
 
-        r_max_sum = float('-inf')
+        right_sum = float('-inf')
         curr_sum = 0
-        for i in range(mid+1, r+1):
+        for i in range(mid+1, hi+1):
             curr_sum += nums[i]
-            r_max_sum = max(curr_sum, r_max_sum)
+            right_sum = max(curr_sum, right_sum)
 
-        return l_max_sum + r_max_sum
+        return right_sum + left_sum
+    
+    def maxSubArray_compare(self, nums: List[int], lo, hi) -> List[int]:
+        """
+        T(n) = 2T(n/2) + d = O(n) -- finding max crossing subarray is reduced to constant time, by master theorem case 2 we have O(n)
+        S(n) = O(log n) -- recursion stack size, splitted in even halves in each level
+        """
+        if lo == hi:
+            return [nums[lo], nums[lo], nums[lo], nums[lo]]
+        mid = (hi+lo)//2
+        left = self.MS_compare(nums, lo, mid)
+        right = self.MS_compare(nums, mid+1, hi)
+        return self.compare(nums, left, right)
+    
+    def compare(self, nums:List[int], L: List[int], R: List[int]) -> int:
+        """
+        T(n) = O(1) -- const time in comparison
+        S(n) = O(1) -- const space used
+
+        L = [left_totalSum, left_maxPrefix, left_maxSuffix, left_maxSum]
+        R = [right_totalSum, right_maxPrefix, right_maxSuffix, right_maxSum]
+        """
+        totalSum = L[0] + R[0]
+        maxPrefix = max(L[1], L[0]+R[1]) # max(left_maxPrefix, left_totalSum+right_maxPrefix)
+        maxSuffix = max(R[2], R[0]+L[2]) # max(right_maxSuffix, right_totalSum+left_maxSuffix)
+        maxSum = max(L[3], R[3], L[2]+R[1]) # max(leftMax, rightMax, leftSuffix+rightPrefix)
+        return [totalSum, maxPrefix, maxSuffix, maxSum]
