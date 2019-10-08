@@ -18,7 +18,7 @@ class Solution:
                 max_r = max(max_r, height[k])
             ans += min(max_l, max_r) - height[i]
         return ans
-    
+
     def trap_DP(self, height: List[int]) -> int:
         """
         T(n) = O(n) = 3n -- 3 passes
@@ -43,7 +43,7 @@ class Solution:
         for i in range(n):
             ans += min(max_l[i], max_r[i]) - height[i]
         return ans
-    
+
     def trap_PTR(self, height: List[int]) -> int:
         """
         T(n) = O(n) = n -- one pass
