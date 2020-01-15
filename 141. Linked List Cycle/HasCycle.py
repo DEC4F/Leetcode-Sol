@@ -18,15 +18,10 @@ class Solution:
         """
         if not head:
             return False
-        fast = slow = head
-        first_run = True
-        while fast and slow:
-            if fast == slow and not first_run:
-                return True
-            else:
-                if not fast.next or not slow.next or not fast.next.next:
-                    return None
-            first_run = False
+        fast, slow = head.next, head
+        while fast != slow:
+            if not fast or not fast.next:
+                return False
             fast = fast.next.next
             slow = slow.next
-        return False
+        return True
