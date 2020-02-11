@@ -10,12 +10,14 @@ class Solution:
         if n < 1 or n < k:
             return [[]]
         res = []
-        def rec(idx, curr) -> None:
-            if len(curr) == k:
-                res.append(curr[:])
-            for i in range(idx, n + 1):
-                curr.append(i)
-                rec(i + 1, curr)
-                curr.pop()
-        rec(1, [])
+
+        def dfs(start: int, path: List[int]) -> None:
+            if len(path) == k:
+                res.append(path[:])
+            for i in range(start, n + 1):
+                path.append(i)
+                dfs(i + 1, path)
+                path.pop()
+
+        dfs(1, [])
         return res

@@ -11,13 +11,13 @@ class Solution:
         """
         ans = []
         candidates.sort()
-        def dfs(target: int, combination: List[int], idx: int) -> None:
-            if not target:
-                ans.append(combination)
+        def dfs(target: int, path: List[int], start: int) -> None:
+            if target == 0:
+                ans.append(path)
                 return
-            for i in range(idx, len(candidates)):
+            for i in range(start, len(candidates)):
                 if candidates[i] > target:
                     break
-                dfs(target-candidates[i], combination+[candidates[i]], i)
+                dfs(target - candidates[i], path + [candidates[i]], i)
         dfs(target, [], 0)
         return ans
