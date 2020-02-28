@@ -12,7 +12,7 @@ class Solution:
         """
         ans = []
         candidates.sort()
-        
+
         def dfs(target: int, path: List[int], start: int) -> None:
             if target == 0:
                 ans.append(path)
@@ -22,6 +22,6 @@ class Solution:
                 if candidates[i] > target:
                     break
                 dfs(target - candidates[i], path + [candidates[i]], i + 1)
-                
+
         dfs(target, [], 0)
         return ans
