@@ -1,4 +1,20 @@
 class Solution:
+
+    def majorityElement_voting(self, nums: List[int]) -> int:
+        """
+        T(n) = O(n)
+        S(n) = O(1)
+        """
+        candidate = count = 0
+        for i in nums:
+            if count == 0:
+                candidate = i
+            if candidate == i:
+                count += 1
+            else:
+                count -= 1
+        return candidate
+
     def majorityElement_divide_n_conquer(self, nums: List[int]) -> int:
         """
         T(n) = O(nlogn) = 2T(n/2) + n

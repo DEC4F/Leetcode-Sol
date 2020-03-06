@@ -13,34 +13,34 @@ class Solution:
         if not M or len(M) < 1 or len(M[0]) < 1:
             return 0
         N = len(M)
-        self.par = [i for i in range(N)]
-        self.rank = [0]*N
-        ans = 0
+        par = [i for i in range(N)]
+        rank = [0]*N
 
-        for i in range(N):
-            for j in range(N):
-                if M[i][j] == 1 and i != j:
-                    self.union(i, j)
-        for i, par in enumerate(self.par):
-            if i == par:
-                ans += 1
-        return ans
+        def find(x: int) -> int:
+            if par[x] != x:
+                par[x] = find(par[x])
+            return par[x]
 
-    def find(self, x: int) -> int:
-        if self.par[x] != x:
-            self.par[x] = self.find(self.par[x])
-        return self.par[x]
+        def union(x: int, y: int) -> bool:
+            xroot, yroot = find(x), find(y)
+            if xroot == yroot:
+                return False
+            if rank[xroot] > rank[yroot]:
+                par[yroot] = xroot
+            elif rank[xroot] < rank[yroot]:
+                par[xroot] = yroot
+            else:
+                par[yroot] = xroot
+                rank[xroot] += 1
+            return True
 
-    def union(self, x: int, y: int) -> bool:
-        xroot = self.find(x)
-        yroot = self.find(y)
-        if xroot == yroot:
-            return False
-        if self.rank[xroot] > self.rank[yroot]:
-            self.par[yroot] = xroot
-        elif self.rank[yroot] > self.rank[xroot]:
-            self.par[xroot] = yroot
-        else:
-            self.par[yroot] = xroot
-            self.rank[xroot] += 1
-        return True
+        # only search half of the matrix
+        for r in range(N):
+            for c in range(r):
+                if M[r][c] == 1 and r != c:
+                    union(r, c)
+        res = 0
+        for i, p in enumerate(par):
+            if i == p:
+                res += 1
+        return res
