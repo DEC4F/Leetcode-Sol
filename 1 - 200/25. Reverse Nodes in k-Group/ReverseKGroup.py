@@ -33,3 +33,15 @@ class Solution:
                 cur = cur.next
             cur.next = nxt
         return dummy.next
+
+    def foo(Arr, k) -> int:
+        dp = [n if n % 3 == 0 else 0 for n in Arr]
+        for i in range(1, len(Arr)):
+            for j in range(i):
+                for s in (dp[j] + dp[i], Arr[j] + dp[i], dp[j] + Arr[i], Arr[j] + Arr[i]):
+                    if s > dp[i] and s % k == 0:
+                        dp[i] = s
+                if dp[j] > dp[i]:
+                    dp[i] = dp[j]
+        return dp
+
