@@ -4,8 +4,10 @@ Given a set of non-overlapping intervals, insert a new interval into the interva
 You may assume that the intervals were initially sorted according to their start times.
 """
 
+
 class Solution:
-    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+    def insert(self, intervals: List[List[int]],
+               newInterval: List[int]) -> List[List[int]]:
         """
         T(n) = O(n) -- greedy, one pass
         S(n) = O(1) -- no extra space

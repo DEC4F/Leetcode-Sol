@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     def kthSmallest_inorder_recur(self, root: TreeNode, k: int) -> int:
         """
@@ -12,6 +13,7 @@ class Solution:
         S(n) = O(n) -- size of recursion stack in worst case
         """
         arr = []
+
         def dfs(node: TreeNode) -> None:
             if node is None:
                 return
@@ -20,7 +22,7 @@ class Solution:
             dfs(node.right)
             return
         dfs(root)
-        return arr[k-1]
+        return arr[k - 1]
 
     def kthSmallest_inorder_iter(self, root: TreeNode, k: int) -> int:
         """

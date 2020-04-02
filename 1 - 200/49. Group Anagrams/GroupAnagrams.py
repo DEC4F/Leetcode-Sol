@@ -2,6 +2,7 @@
 Given an array of strings, group anagrams together.
 """
 
+
 class Solution:
     def groupAnagrams_sorting(self, strs: List[str]) -> List[List[str]]:
         """
@@ -16,7 +17,7 @@ class Solution:
             else:
                 anagrams[letters] = [word]
         return anagrams.values()
-    
+
     def groupAnagrams_ord_mask(self, strs: List[str]) -> List[List[str]]:
         """
         T(n) = O(nk) -- one pass for each word and one pass for each char
@@ -24,7 +25,7 @@ class Solution:
         """
         anagrams = {}
         for word in strs:
-            mask = [0]*26
+            mask = [0] * 26
             for c in word:
                 mask[ord(c) - ord('a')] += 1
             mask_as_key = tuple(mask)

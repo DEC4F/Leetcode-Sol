@@ -1,9 +1,10 @@
 class TrieNode:
-    
+
     def __init__(self):
         self.children = collections.defaultdict(TrieNode)
         self.is_end = False
-    
+
+
 class Trie:
 
     def __init__(self):
@@ -20,7 +21,7 @@ class Trie:
         for c in word:
             cur_node = cur_node.children[c]
         cur_node.is_end = True
-        
+
     def search(self, word: str) -> bool:
         """
         Returns if the word is in the trie.

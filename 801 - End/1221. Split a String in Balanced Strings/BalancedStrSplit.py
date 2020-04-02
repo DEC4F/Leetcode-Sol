@@ -5,6 +5,8 @@ Given a balanced string s split it in the maximum amount of balanced strings.
 
 Return the maximum amount of splitted balanced strings.
 """
+
+
 class Solution:
     def balancedStringSplit(self, s: str) -> int:
         """

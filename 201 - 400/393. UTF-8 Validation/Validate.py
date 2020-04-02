@@ -6,6 +6,8 @@ For n-bytes character, the first n-bits are all one's, the n+1 bit is 0, followe
 
 Given an array of integers representing the data, return whether it is a valid utf-8 encoding.
 """
+
+
 class Solution:
     def validUtf8(self, data: List[int]) -> bool:
         """

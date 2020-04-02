@@ -10,6 +10,7 @@ To represent a cycle in the given linked list, we use an integer pos which repre
 #         self.val = x
 #         self.next = None
 
+
 class Solution:
     def hasCycle_fast_slow_ptr(self, head: ListNode) -> bool:
         """

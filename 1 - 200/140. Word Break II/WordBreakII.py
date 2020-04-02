@@ -2,6 +2,7 @@
 Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
 """
 
+
 class Solution:
     def wordBreak_BF(self, s: str, wordDict: List[str]) -> List[str]:
         """
@@ -10,11 +11,12 @@ class Solution:
         """
         if not s or not wordDict:
             return []
+
         def rec(i: int) -> List[str]:
             res = []
             if i == len(s):
                 res.append("")
-            for j in range(i+1, len(s)+1):
+            for j in range(i + 1, len(s) + 1):
                 if s[i:j] in wordDict:
                     lst = rec(j)
                     for l in lst:
@@ -33,13 +35,14 @@ class Solution:
         if not s or not wordDict:
             return []
         seen_dict = {}
+
         def rec(i: int) -> List[str]:
             if i in seen_dict.keys():
                 return seen_dict[i]
             res = []
             if i == len(s):
                 res.append("")
-            for j in range(i+1, len(s)+1):
+            for j in range(i + 1, len(s) + 1):
                 if s[i:j] in wordDict:
                     lst = rec(j)
                     for l in lst:

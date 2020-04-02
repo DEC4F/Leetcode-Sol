@@ -4,6 +4,7 @@ You are a professional robber planning to rob houses along a street. Each house 
 Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
 """
 
+
 class Solution:
     def rob_dp(self, nums: List[int]) -> int:
         """
@@ -13,14 +14,14 @@ class Solution:
         if not nums:
             return 0
 
-        loot = [-1]*len(nums)
+        loot = [-1] * len(nums)
         for i, plunder in enumerate(nums):
             if i == 0:
                 loot[i] = plunder
             elif i == 1:
                 loot[i] = max(plunder, loot[0])
             else:
-                loot[i] = max(loot[i-2]+plunder, loot[i-1])
+                loot[i] = max(loot[i - 2] + plunder, loot[i - 1])
         return loot[-1]
 
     def rob_dp_const(self, nums: List[int]) -> int:

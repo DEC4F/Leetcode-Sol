@@ -2,6 +2,8 @@
 You are given an n x n 2D matrix representing an image.
 Rotate the image by 90 degrees (clockwise).
 """
+
+
 class Solution:
     def rotate_transpose(self, matrix: List[List[int]]) -> None:
         """
@@ -24,10 +26,10 @@ class Solution:
         S(n) = O(1) -- only used one temp variable
         """
         n = len(matrix[0])
-        for r in range(n//2 + n%2):
+        for r in range(n // 2 + n % 2):
             for c in range(n // 2):
-                tmp = matrix[n-1-c][r]
-                matrix[n-1-c][r] = matrix[n-1-r][n-1-c]
-                matrix[n-1-r][n-1-c] = matrix[c][n-1-r]
-                matrix[c][n-1-r] = matrix[r][c]
+                tmp = matrix[n - 1 - c][r]
+                matrix[n - 1 - c][r] = matrix[n - 1 - r][n - 1 - c]
+                matrix[n - 1 - r][n - 1 - c] = matrix[c][n - 1 - r]
+                matrix[c][n - 1 - r] = matrix[r][c]
                 matrix[r][c] = tmp

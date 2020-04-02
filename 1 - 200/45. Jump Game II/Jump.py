@@ -6,6 +6,7 @@ Each element in the array represents your maximum jump length at that position.
 Your goal is to reach the last index in the minimum number of jumps.
 """
 
+
 class Solution:
     def jump(self, nums: List[int]) -> int:
         """
@@ -19,6 +20,7 @@ class Solution:
             return 0
         count, cur, reachables = 1, 0, nums[0]
         while reachables < n - 1:
-            cur, reachables = reachables, max(i + nums[i] for i in range(cur, reachables + 1))
+            cur, reachables = reachables, max(
+                i + nums[i] for i in range(cur, reachables + 1))
             count += 1
         return count

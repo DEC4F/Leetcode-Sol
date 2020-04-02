@@ -2,16 +2,19 @@
 A 2d grid map of m rows and n columns is initially filled with water. We may perform an addLand operation which turns the water at position (row, col) into a land. Given a list of positions to operate, count the number of islands after each addLand operation. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
 """
 
+
 class Solution:
-    def numIslands2(self, m: int, n: int, positions: List[List[int]]) -> List[int]:
+    def numIslands2(self, m: int, n: int,
+                    positions: List[List[int]]) -> List[int]:
         """
         T(n) = O(L) -- number of operations performed
         S(n) = O(m*n) -- size of union find array
         """
-        if m*n == 0: return [0]*len(positions)
+        if m * n == 0:
+            return [0] * len(positions)
 
-        self.par = [-1]*(m*n)
-        self.rank = [0]*(m*n)
+        self.par = [-1] * (m * n)
+        self.rank = [0] * (m * n)
         self.count = 0
 
         ans = []
@@ -19,16 +22,16 @@ class Solution:
             i, j = move[0], move[1]
             neighbors = []
 
-            if i-1 >= 0 and self.is_valid((i-1)*n+j):
-                neighbors.append((i-1)*n+j)
-            if i+1 < m and self.is_valid((i+1)*n+j):
-                neighbors.append((i+1)*n+j)
-            if j-1 >= 0 and self.is_valid(i*n+j-1):
-                neighbors.append(i*n+j-1)
-            if j+1 < n and self.is_valid(i*n+j+1):
-                neighbors.append(i*n+j+1)
+            if i - 1 >= 0 and self.is_valid((i - 1) * n + j):
+                neighbors.append((i - 1) * n + j)
+            if i + 1 < m and self.is_valid((i + 1) * n + j):
+                neighbors.append((i + 1) * n + j)
+            if j - 1 >= 0 and self.is_valid(i * n + j - 1):
+                neighbors.append(i * n + j - 1)
+            if j + 1 < n and self.is_valid(i * n + j + 1):
+                neighbors.append(i * n + j + 1)
 
-            idx = i*n+j
+            idx = i * n + j
             self.set_par(idx)
             for neigh in neighbors:
                 self.union(idx, neigh)

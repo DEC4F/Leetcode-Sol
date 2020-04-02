@@ -1,6 +1,8 @@
 """
 Given two strings s and t, determine if they are both one edit distance apart.
 """
+
+
 class Solution:
     def isOneEditDistance(self, s: str, t: str) -> bool:
         """

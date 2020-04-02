@@ -3,6 +3,8 @@ Write a program to find the nth super ugly number.
 
 Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.
 """
+
+
 class Solution:
     def nthSuperUglyNumber(self, n: int, primes: List[int]) -> int:
         """
@@ -16,5 +18,5 @@ class Solution:
                 res = heappop(q)
             seen.add(res)
             for i in primes:
-                    heappush(q, res * i)
+                heappush(q, res * i)
         return res

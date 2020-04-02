@@ -10,6 +10,7 @@ class Node:
         self.neighbors = neighbors
 """
 
+
 class Solution:
     def cloneGraph_BFS(self, node: 'Node') -> 'Node':
         """
@@ -20,20 +21,25 @@ class Solution:
             return Node(node.val, node.neighbors)
 
         from collections import deque
-        dq = deque([node,])
+        dq = deque([node, ])
         copy = Node(node.val, [])
-        copy_dict = {node:copy}
+        copy_dict = {node: copy}
 
         while dq:
             curr_node = dq.popleft()
             for neighbor in curr_node.neighbors:
-                if neighbor not in copy_dict: # if current neighbor is unvisited
+                if neighbor not in copy_dict:  # if current neighbor is unvisited
                     neighbor_copy = Node(neighbor.val, [])
-                    copy_dict[neighbor] = neighbor_copy # we store the original:copy pair in the dict
-                    copy_dict[curr_node].neighbors.append(neighbor_copy) # we add the copy to the neighbor list of copied current node
-                    dq.append(neighbor) # add neighbor to dq to expand
+                    # we store the original:copy pair in the dict
+                    copy_dict[neighbor] = neighbor_copy
+                    # we add the copy to the neighbor list of copied current
+                    # node
+                    copy_dict[curr_node].neighbors.append(neighbor_copy)
+                    dq.append(neighbor)  # add neighbor to dq to expand
                 else:
-                    copy_dict[curr_node].neighbors.append(copy_dict[neighbor]) # if visited, add copied neighbor to current copied node's neighbor list
+                    # if visited, add copied neighbor to current copied node's
+                    # neighbor list
+                    copy_dict[curr_node].neighbors.append(copy_dict[neighbor])
         return copy
 
     def cloneGraph_DFS(self, node: 'Node') -> 'Node':
@@ -43,7 +49,8 @@ class Solution:
         """
         if not(node and node.val and node.neighbors):
             return Node(node.val, node.neighbors)
-        def clone(node: 'Node', seen: {'Node':'Node'}) -> 'Node':
+
+        def clone(node: 'Node', seen: {'Node': 'Node'}) -> 'Node':
             for neighbor in node.neighbors:
                 if neighbor in seen:
                     seen[node].neighbors.append(seen[neighbor])
@@ -53,6 +60,6 @@ class Solution:
                     seen[node].neighbors.append(neighbor_copy)
                     clone(neighbor, seen)
         node_copied = Node(node.val, [])
-        seen = {node : node_copied}
+        seen = {node: node_copied}
         clone(node, seen)
         return node_copied

@@ -5,8 +5,10 @@ For some given string S, a query word is stretchy if it can be made to be equal 
 
 For example, starting with "hello", we could do an extension on the group "o" to get "hellooo", but we cannot get "helloo" since the group "oo" has size less than 3.  Also, we could do another extension like "ll" -> "lllll" to get "helllllooo".  If S = "helllllooo", then the query word "hello" would be stretchy because of these two extension operations: query = "hello" -> "hellooo" -> "helllllooo" = S.
 
-Given a list of query words, return the number of words that are stretchy. 
+Given a list of query words, return the number of words that are stretchy.
 """
+
+
 class Solution:
     def expressiveWords(self, S: str, words: List[str]) -> int:
         """
@@ -34,5 +36,6 @@ class Solution:
             cur_group, cur_size = group(w)
             if target_group != cur_group:
                 continue
-            res += all(t == c or t >= max(c, 3) for t, c in zip(target_size, cur_size))
+            res += all(t == c or t >= max(c, 3)
+                       for t, c in zip(target_size, cur_size))
         return res

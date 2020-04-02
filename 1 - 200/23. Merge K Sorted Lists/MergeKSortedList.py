@@ -3,6 +3,10 @@ Merge k sorted linked lists and return it as one sorted list. Analyze and descri
 """
 
 # Definition for singly-linked list.
+
+import heapq as hq
+
+
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -15,7 +19,6 @@ class ListNode:
 #    def __gt__(self, node):
 #         return self.val > node.val
 
-import heapq as hq
 
 class Solution:
 
@@ -36,7 +39,7 @@ class Solution:
             interval *= 2
         return lists[0] if amount > 0 else lists
 
-    def merge2Lists(self, l1:ListNode, l2:ListNode) -> ListNode:
+    def merge2Lists(self, l1: ListNode, l2: ListNode) -> ListNode:
         head = ptr = ListNode(0)
         while l1 and l2:
             if l1.val < l2.val:

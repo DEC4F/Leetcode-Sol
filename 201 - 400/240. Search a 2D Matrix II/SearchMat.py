@@ -4,8 +4,12 @@ Write an efficient algorithm that searches for a value in an m x n matrix. This 
 Integers in each row are sorted in ascending from left to right.
 Integers in each column are sorted in ascending from top to bottom.
 """
+
+
 class Solution:
-    def searchMatrix_bi_search(self, matrix: List[List[int]], target: int) -> bool:
+    def searchMatrix_bi_search(self,
+                               matrix: List[List[int]],
+                               target: int) -> bool:
         """
         T(n) = O(logm + logn + mlogn) -- two binary searches and m binary searches for all valid rows
         S(n) = O(1)
@@ -48,7 +52,9 @@ class Solution:
                 return True
         return False
 
-    def searchMatrix_div_n_conquer(self, matrix: List[List[int]], target: int) -> bool:
+    def searchMatrix_div_n_conquer(self,
+                                   matrix: List[List[int]],
+                                   target: int) -> bool:
         """
         T(n) = O(nlogn)
         S(n) = O(1)

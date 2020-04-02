@@ -2,6 +2,7 @@
 Given an unsorted array of integers, find the number of longest increasing subsequence.
 """
 
+
 class Solution:
     def findNumberOfLIS(self, nums: List[int]) -> int:
         """
@@ -19,9 +20,9 @@ class Solution:
         n = len(nums)
         if n < 2:
             return 1
-        LIS_count = [1]*n
-        LIS_len = [0]*n
-        
+        LIS_count = [1] * n
+        LIS_len = [0] * n
+
         # compute LIS ending at nums[i]
         for i in range(n):
             for j in range(i):

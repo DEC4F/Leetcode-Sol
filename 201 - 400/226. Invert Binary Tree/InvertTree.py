@@ -9,6 +9,7 @@ Invert a binary tree.
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     def invertTree(self, root: TreeNode) -> TreeNode:
         """

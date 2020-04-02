@@ -7,19 +7,21 @@ Rules for a valid pattern:
 - If the line connecting two consecutive keys in the pattern passes through any other keys, the other keys must have previously selected in the pattern. No jumps through non selected key is allowed.
 - The order of keys used matters.
 """
+
+
 class Solution:
 
     def __init__(self):
         self.illegals = {
-            1: { 2: None, 5: None, 4: None, 6: None, 8: None, 3: 2, 7: 4, 9: 5 },
-            2: { 1: None, 5: None, 4: None, 6: None, 3: None, 9: None, 7: None, 8: 5 },
-            3: { 2: None, 5: None, 6: None, 4: None, 8: None, 7: 5, 1: 2, 9: 6 },
-            4: { 1: None, 7: None, 2: None, 5: None, 8: None, 9: None, 3: None, 6: 5 },
-            5: { 1: None, 2: None, 3: None, 4: None, 6: None, 7: None, 8: None, 9: None },
-            6: { 3: None, 9: None, 2: None, 5: None, 8: None, 1: None, 7: None, 4: 5 },
-            7: { 4: None, 5: None, 8: None, 6: None, 2: None, 9: 8, 1: 4, 3: 5 },
-            8: { 4: None, 5: None, 6: None, 7: None, 9: None, 1: None, 3: None, 2: 5 },
-            9: { 8: None, 5: None, 6: None, 4: None, 2: None, 7: 8, 1: 5, 3: 6 }
+            1: {2: None, 5: None, 4: None, 6: None, 8: None, 3: 2, 7: 4, 9: 5},
+            2: {1: None, 5: None, 4: None, 6: None, 3: None, 9: None, 7: None, 8: 5},
+            3: {2: None, 5: None, 6: None, 4: None, 8: None, 7: 5, 1: 2, 9: 6},
+            4: {1: None, 7: None, 2: None, 5: None, 8: None, 9: None, 3: None, 6: 5},
+            5: {1: None, 2: None, 3: None, 4: None, 6: None, 7: None, 8: None, 9: None},
+            6: {3: None, 9: None, 2: None, 5: None, 8: None, 1: None, 7: None, 4: 5},
+            7: {4: None, 5: None, 8: None, 6: None, 2: None, 9: 8, 1: 4, 3: 5},
+            8: {4: None, 5: None, 6: None, 7: None, 9: None, 1: None, 3: None, 2: 5},
+            9: {8: None, 5: None, 6: None, 4: None, 2: None, 7: 8, 1: 5, 3: 6}
         }
         self.memo = {}
         self.res = 0
@@ -44,7 +46,8 @@ class Solution:
             for idx, next_key in enumerate([i for i in range(1, 10)]):
                 if next_key == key or used[idx]:
                     continue
-                if self.illegals[key].get(next_key) and not used[self.illegals[key].get(next_key) - 1]:
+                if self.illegals[key].get(
+                        next_key) and not used[self.illegals[key].get(next_key) - 1]:
                     continue
                 used[idx] = True
                 self.memo[comb] += backtrack(used, next_key, k - 1)
@@ -74,7 +77,8 @@ class Solution:
             for key in range(1, 10):
                 if used[key - 1]:
                     continue
-                if comb and self.illegals[comb[-1]].get(key) and self.illegals[comb[-1]].get(key) not in comb:
+                if comb and self.illegals[comb[-1]].get(
+                        key) and self.illegals[comb[-1]].get(key) not in comb:
                     continue
                 used[key - 1] = True
                 comb.append(key)

@@ -2,6 +2,7 @@
 Given a collection of numbers that might contain duplicates, return all possible unique permutations.
 """
 
+
 class Solution:
     def permuteUnique_memo(self, nums: List[int]) -> List[List[int]]:
         """
@@ -12,13 +13,15 @@ class Solution:
             return [[]]
         nums.sort()
         res = []
-        used = [False]*len(nums)
+        used = [False] * len(nums)
+
         def rec(temp) -> None:
             if len(temp) == len(nums):
                 res.append(temp[:])
                 return
             for i in range(len(nums)):
-                if used[i] or (i > 0 and nums[i] == nums[i - 1] and used[i - 1]):
+                if used[i] or (i > 0 and nums[i] ==
+                               nums[i - 1] and used[i - 1]):
                     continue
                 used[i] = True
                 temp.append(nums[i])

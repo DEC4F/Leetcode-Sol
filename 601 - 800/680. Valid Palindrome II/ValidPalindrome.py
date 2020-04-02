@@ -12,9 +12,15 @@ class Solution:
                 l += 1
                 r -= 1
             else:
-                return self.is_palindromic(s, l + 1, r) or self.is_palindromic(s, l, r - 1)
+                return self.is_palindromic(
+                    s,
+                    l + 1,
+                    r) or self.is_palindromic(
+                    s,
+                    l,
+                    r - 1)
         return True
-    
+
     def is_palindromic(self, s: str, i: int, j: int) -> bool:
         while i < j:
             if s[i] == s[j]:

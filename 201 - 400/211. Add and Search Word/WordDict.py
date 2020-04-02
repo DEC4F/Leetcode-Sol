@@ -1,8 +1,9 @@
 class TrieNode:
-    
+
     def __init__(self):
         self.children = collections.defaultdict(TrieNode)
         self.is_end = False
+
 
 class WordDictionary_REC:
 
@@ -27,7 +28,7 @@ class WordDictionary_REC:
     def search_rec(self, word: str) -> bool:
         """
         Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
-        
+
         T(n) = O(n)
         S(n) = O(n)
         """
@@ -35,7 +36,7 @@ class WordDictionary_REC:
         node = self.root
         self.rec_search(word, node)
         return self.res
-        
+
     def rec_search(self, word: str, node: TrieNode):
         if not word:
             if node.is_end:

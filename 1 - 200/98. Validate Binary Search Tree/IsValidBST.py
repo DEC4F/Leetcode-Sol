@@ -15,6 +15,7 @@ Both the left and right subtrees must also be binary search trees.
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
         """
@@ -26,7 +27,13 @@ class Solution:
                 return True
             if node.val <= lo or node.val >= hi:
                 return False
-            return recur(node.left, lo, node.val) and recur(node.right, node.val, hi)
+            return recur(
+                node.left,
+                lo,
+                node.val) and recur(
+                node.right,
+                node.val,
+                hi)
 
         lo = float('-inf')
         hi = float('inf')

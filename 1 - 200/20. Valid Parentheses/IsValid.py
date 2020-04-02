@@ -8,13 +8,15 @@ Open brackets must be closed in the correct order.
 Note that an empty string is also considered valid.
 """
 
+
 class Solution:
     """
     T(n) = O(n) -- one pass
     S(n) = O(n) -- stored a stack
     """
+
     def isValid(self, s: str) -> bool:
-        parens = {'(':')', '{':'}', '[':']'}
+        parens = {'(': ')', '{': '}', '[': ']'}
         open_brackets = ['(', '{', '[']
         stack = []
 

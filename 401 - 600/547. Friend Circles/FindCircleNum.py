@@ -4,6 +4,7 @@ There are N students in a class. Some of them are friends, while some are not. T
 Given a N*N matrix M representing the friend relationship between students in the class. If M[i][j] = 1, then the ith and jth students are direct friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.
 """
 
+
 class Solution:
     def findCircleNum(self, M: List[List[int]]) -> int:
         """
@@ -14,7 +15,7 @@ class Solution:
             return 0
         N = len(M)
         par = [i for i in range(N)]
-        rank = [0]*N
+        rank = [0] * N
 
         def find(x: int) -> int:
             if par[x] != x:

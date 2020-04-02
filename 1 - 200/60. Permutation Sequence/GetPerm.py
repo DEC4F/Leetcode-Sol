@@ -12,13 +12,15 @@ By listing and labeling all of the permutations in order, we get the following s
 Given n and k, return the kth permutation sequence.
 """
 
+
 class Solution:
     def getPermutation_TLE(self, n: int, k: int) -> str:
         if n < 1:
             return ""
         nums = [i for i in range(1, n + 1)]
         perm = []
-        used = [False]*n
+        used = [False] * n
+
         def rec(temp: List[int]) -> None:
             if len(temp) == n:
                 perm.append(temp[:])
@@ -39,7 +41,7 @@ class Solution:
         T(n) = O(n^2)
         S(n) = O(n)
         """
-        f = [1]*n
+        f = [1] * n
         nums = ['1']
         for i in range(1, n):
             f[i] = f[i - 1] * i

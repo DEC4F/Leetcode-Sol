@@ -6,6 +6,7 @@ The digits are stored such that the most significant digit is at the head of the
 You may assume the integer does not contain any leading zero, except the number 0 itself.
 """
 
+
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
         """

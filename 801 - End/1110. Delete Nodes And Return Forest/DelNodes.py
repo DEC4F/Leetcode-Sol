@@ -12,6 +12,7 @@ Return the roots of the trees in the remaining forest.  You may return the resul
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
 
     def delNodes(self, root: TreeNode, to_delete: List[int]) -> List[TreeNode]:
@@ -24,7 +25,10 @@ class Solution:
         if len(to_delete) < 1:
             return [root]
 
-        def dfs(node: TreeNode, is_root: bool, forest: List[TreeNode]) -> (List[TreeNode], TreeNode):
+        def dfs(node: TreeNode,
+                is_root: bool,
+                forest: List[TreeNode]) -> (List[TreeNode],
+                                            TreeNode):
             # end of current branch due to exhaustion
             if not node:
                 return forest, None

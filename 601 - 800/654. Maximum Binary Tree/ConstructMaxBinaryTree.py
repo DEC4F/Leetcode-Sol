@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     def constructMaximumBinaryTree(self, nums: List[int]) -> TreeNode:
         """
@@ -20,7 +21,7 @@ class Solution:
             node = TreeNode(nums[idx])
             if len(nums[:idx]) > 0:
                 node.left = construct(nums[:idx])
-            if len(nums[idx+1:]) > 0:
-                node.right = construct(nums[idx+1:])
+            if len(nums[idx + 1:]) > 0:
+                node.right = construct(nums[idx + 1:])
             return node
         return construct(nums)

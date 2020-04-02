@@ -1,8 +1,10 @@
 """
 Write a program to find the n-th ugly number.
 
-Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. 
+Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.
 """
+
+
 class Solution:
     def nthUglyNumber_heap(self, n: int) -> int:
         """
@@ -16,7 +18,7 @@ class Solution:
                 res = heappop(q)
             seen.add(res)
             for i in [2, 3, 5]:
-                    heappush(q, res * i)
+                heappush(q, res * i)
         return res
 
     def nthUglyNumber_3_ptrs(self, n: int) -> int:

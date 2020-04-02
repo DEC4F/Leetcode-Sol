@@ -10,6 +10,8 @@ The passes allow that many days of consecutive travel.  For example, if we get a
 
 Return the minimum number of dollars you need to travel every day in the given list of days.
 """
+
+
 class Solution:
     def mincostTickets(self, days: List[int], costs: List[int]) -> int:
         """
@@ -19,10 +21,11 @@ class Solution:
         when not traveling, keep the previous val
         otherwise, find minimum value
         """
-        dp = [0] * (days[-1] + 1) # money spent so far on day i
+        dp = [0] * (days[-1] + 1)  # money spent so far on day i
         for i in range(1, days[-1] + 1):
             if i in days:
-                dp[i] = min(dp[max(0, i - 1)] + costs[0], dp[max(0, i - 7)] + costs[1], dp[max(0, i - 30)] + costs[2])
+                dp[i] = min(dp[max(0, i - 1)] + costs[0], dp[max(0, i - 7)
+                                                             ] + costs[1], dp[max(0, i - 30)] + costs[2])
             else:
                 dp[i] = dp[i - 1]
         return dp[days[-1]]

@@ -3,6 +3,8 @@ Given an array of integers A, a move consists of choosing any A[i], and incremen
 
 Return the least number of moves to make every value in A unique.
 """
+
+
 class Solution:
     def minIncrementForUnique_list(self, A: List[int]) -> int:
         """
@@ -32,7 +34,8 @@ class Solution:
                 taken += 1
                 ans -= A[i]
             else:
-                # give is the number of dup that can be inserted into this interval
+                # give is the number of dup that can be inserted into this
+                # interval
                 give = min(taken, A[i] - A[i - 1] - 1)
                 # sum (A[i - 1] + 1, A[i - 1] + 2, ..., A[i - 1] + give)
                 ans += (give * (give + 1) / 2) + give * A[i - 1]

@@ -8,6 +8,8 @@ Every minute, any fresh orange that is adjacent (4-directionally) to a rotten or
 
 Return the minimum number of minutes that must elapse until no cell has a fresh orange.  If this is impossible, return -1 instead.
 """
+
+
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         """
@@ -25,7 +27,8 @@ class Solution:
                     queue.append((r, c, 0))
 
         def neighbors(r, c):
-            for new_r, new_c in ((r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)):
+            for new_r, new_c in (
+                    (r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)):
                 if 0 <= new_r < R and 0 <= new_c < C:
                     yield new_r, new_c
 

@@ -1,4 +1,6 @@
 from collections import Counter
+
+
 class Solution:
 
     def subarraysDivByK(self, A: List[int], K: int) -> int:
@@ -28,5 +30,5 @@ class Solution:
         for n in A:
             prefix = (prefix + n) % K
             res += count[prefix]
-            count[prefix] += 1 
+            count[prefix] += 1
         return res
