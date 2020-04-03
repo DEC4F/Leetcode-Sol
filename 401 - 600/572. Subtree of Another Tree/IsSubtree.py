@@ -9,8 +9,10 @@ Given two non-empty binary trees s and t, check whether tree t has exactly the s
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
-    def isSubtree_bfs_recursive_compare(self, s: TreeNode, t: TreeNode) -> bool:
+    def isSubtree_bfs_recursive_compare(
+            self, s: TreeNode, t: TreeNode) -> bool:
         """
         T(n) = O(m*n) -- visit all nodes and compared almost all nodes in t in worst case
         S(n) = O(m+n) -- size of dq plus recursion stack in worst case
@@ -36,7 +38,9 @@ class Solution:
             return True
         if (s is None or t is None):
             return False
-        return s.val == t.val and self.compare(s.left, t.left) and self.compare(s.right, t.right)
+        return s.val == t.val and self.compare(
+            s.left, t.left) and self.compare(
+            s.right, t.right)
 
     def isSubtree_string_search(self, s: TreeNode, t: TreeNode) -> bool:
         """
@@ -58,4 +62,5 @@ class Solution:
                 return 'lnull '
             else:
                 return 'rnull '
-        return '#' + str(node.val) + ' ' + self.serialize(node.left, True) + self.serialize(node.right, False)
+        return '#' + str(node.val) + ' ' + self.serialize(node.left,
+                                                          True) + self.serialize(node.right, False)

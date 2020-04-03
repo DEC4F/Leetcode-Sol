@@ -23,6 +23,7 @@ Given an Iterator class interface with methods: next() and hasNext(), design and
 #         :rtype: int
 #         """
 
+
 class PeekingIterator:
     def __init__(self, iterator):
         """

@@ -4,6 +4,8 @@ You're given strings J representing the types of stones that are jewels, and S r
 The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so "a" is considered a different type of stone from "A".
 """
 from collections import Counter
+
+
 class Solution:
     def numJewelsInStones(self, J: str, S: str) -> int:
         """

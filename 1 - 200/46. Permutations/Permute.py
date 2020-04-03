@@ -2,6 +2,7 @@
 Given a collection of distinct integers, return all possible permutations.
 """
 
+
 class Solution:
     def permute_memo(self, nums: List[int]) -> List[List[int]]:
         """
@@ -11,7 +12,8 @@ class Solution:
         if nums is None:
             return []
         res = []
-        used = [False]*len(nums)
+        used = [False] * len(nums)
+
         def rec(temp: List[int]) -> None:
             if len(temp) == len(nums):
                 res.append(temp[:])
@@ -33,6 +35,7 @@ class Solution:
         S(n) = O()
         """
         res = []
+
         def rec(first: int) -> None:
             if first == len(nums):
                 res.append(nums[:])

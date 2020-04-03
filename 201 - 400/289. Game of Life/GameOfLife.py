@@ -10,23 +10,37 @@ Given a board with m by n cells, each cell has an initial state live (1) or dead
 
 Write a function to compute the next state (after one update) of the board given its current state. The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously.
 """
+
+
 class Solution:
     def gameOfLife(self, board: List[List[int]]) -> None:
         """
         Do not return anything, modify board in-place instead.
-        
+
         T(n) = O(MN) -- traversed all cells in the M*N board
         S(n) = O(1)
         """
         if len(board) < 1 or len(board[0]) < 1:
             return
-        
+
         def neighbors(i: int, j: int) -> (int, int):
-            all_neighbors = [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1), (i - 1, j - 1), (i - 1, j + 1), (i + 1, j - 1), (i + 1, j + 1)]
+            all_neighbors = [(i -
+                              1, j), (i +
+                                      1, j), (i, j -
+                                              1), (i, j +
+                                                   1), (i -
+                                                        1, j -
+                                                        1), (i -
+                                                             1, j +
+                                                             1), (i +
+                                                                  1, j -
+                                                                  1), (i +
+                                                                       1, j +
+                                                                       1)]
             for new_i, new_j in all_neighbors:
                 if 0 <= new_i < len(board) and 0 <= new_j < len(board[0]):
                     yield new_i, new_j
-        
+
         for i, row in enumerate(board):
             for j, cell in enumerate(row):
                 n_live_neighbor = 0
@@ -44,7 +58,7 @@ class Solution:
                     # rule 4: reproduction
                     if n_live_neighbor == 3:
                         board[i][j] = 2
-        
+
         # change "marked" cell to actual state
         for i, row in enumerate(board):
             for j, cell in enumerate(row):

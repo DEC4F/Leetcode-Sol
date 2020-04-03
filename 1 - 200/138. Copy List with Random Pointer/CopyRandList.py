@@ -10,6 +10,8 @@ class Node:
         self.next = next
         self.random = random
 """
+
+
 class Solution:
 
     def __init__(self):

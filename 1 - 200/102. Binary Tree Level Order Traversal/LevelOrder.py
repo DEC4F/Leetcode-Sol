@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         """
@@ -17,7 +18,7 @@ class Solution:
         if not root:
             return ans
 
-        dq = deque([root,])
+        dq = deque([root, ])
         lv = 0
         while dq:
             ans.append([])

@@ -7,6 +7,8 @@ You are given a m x n 2D grid initialized with these three possible values.
 
 Fill each empty room with the distance to its nearest gate. If it is impossible to reach a gate, it should be filled with INF.
 """
+
+
 class Solution:
     def wallsAndGates(self, rooms: List[List[int]]) -> None:
         """

@@ -8,6 +8,7 @@ Delete a character
 Replace a character
 """
 
+
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
         """
@@ -16,17 +17,19 @@ class Solution:
         """
         m = len(word1)
         n = len(word2)
-        if m*n == 0:
-            return m+n
-        dist = [[-1]*(n+1) for _ in range(m+1)]
-        for i in range(1, m+1):
+        if m * n == 0:
+            return m + n
+        dist = [[-1] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
             dist[i][0] = i
-        for j in range(1, n+1):
+        for j in range(1, n + 1):
             dist[0][j] = j
-        for i in range(1, m+1):
-            for j in range(1, n+1):
-                if word1[i-1] == word2[j-1]:
-                    dist[i][j] = 1 + min(dist[i-1][j], dist[i][j-1], dist[i-1][j-1]-1)
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if word1[i - 1] == word2[j - 1]:
+                    dist[i][j] = 1 + min(dist[i - 1][j],
+                                         dist[i][j - 1], dist[i - 1][j - 1] - 1)
                 else:
-                    dist[i][j] = 1 + min(dist[i-1][j], dist[i][j-1], dist[i-1][j-1])
+                    dist[i][j] = 1 + min(dist[i - 1][j],
+                                         dist[i][j - 1], dist[i - 1][j - 1])
         return dist[m][n]

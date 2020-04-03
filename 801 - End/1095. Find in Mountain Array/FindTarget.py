@@ -20,16 +20,20 @@ Submissions making more than 100 calls to MountainArray.get will be judged Wrong
 # This is MountainArray's API interface.
 # You should not implement it, or speculate about its implementation
 # """
-#class MountainArray:
+# class MountainArray:
 #    def get(self, index: int) -> int:
 #    def length(self) -> int:
+
 
 class Solution:
 
     def __init__(self):
         self.cache = {}
 
-    def findInMountainArray(self, target: int, mountain_arr: 'MountainArray') -> int:
+    def findInMountainArray(
+            self,
+            target: int,
+            mountain_arr: 'MountainArray') -> int:
         """
         T(n) = O(logn) = logn + 1/2logn + 1/2logn -- one binary search and two halves binary search
         S(n) = O(n) -- size of cache
@@ -64,7 +68,13 @@ class Solution:
                 r = mid
         return l
 
-    def target_idx(self, l: int, r: int, target: int, mountain_arr: 'MountainArray', is_inc: bool) -> int:
+    def target_idx(
+            self,
+            l: int,
+            r: int,
+            target: int,
+            mountain_arr: 'MountainArray',
+            is_inc: bool) -> int:
         """
         T(n) = O(logn)
         S(n) = O(1)

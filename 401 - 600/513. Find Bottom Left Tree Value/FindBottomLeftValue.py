@@ -7,6 +7,7 @@
 
 from collections import deque
 
+
 class Solution:
     def findBottomLeftValue_bfs(self, root: TreeNode) -> int:
         """
@@ -46,8 +47,8 @@ class Solution:
             if lv > max_lv:
                 ans = node.val
                 max_lv = lv
-            dfs(node.left, lv+1)
-            dfs(node.right, lv+1)
+            dfs(node.left, lv + 1)
+            dfs(node.right, lv + 1)
 
         dfs(root, max_lv)
         return ans

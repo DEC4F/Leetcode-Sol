@@ -4,8 +4,11 @@ Given a collection of candidate numbers (candidates) and a target number (target
 Each number in candidates may only be used once in the combination.
 """
 
+
 class Solution:
-    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum2(self,
+                        candidates: List[int],
+                        target: int) -> List[List[int]]:
         """
         T(n) = nlogn + O(n^d) where d is the max depth dfs will search
         S(n) = O(n^d) where d is the max depth dfs will search

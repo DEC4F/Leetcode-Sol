@@ -10,6 +10,8 @@ A clear path from top-left to bottom-right has length k if and only if it is com
 
 Return the length of the shortest such clear path from top-left to bottom-right.  If such a path does not exist, return -1.
 """
+
+
 class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
         """
@@ -23,7 +25,19 @@ class Solution:
         queue.append((0, 0, 1))
 
         def neighbors(i: int, j: int) -> (int, int):
-            all_neighbors = [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1), (i - 1, j - 1), (i - 1, j + 1), (i + 1, j - 1), (i + 1, j + 1)]
+            all_neighbors = [(i -
+                              1, j), (i +
+                                      1, j), (i, j -
+                                              1), (i, j +
+                                                   1), (i -
+                                                        1, j -
+                                                        1), (i -
+                                                             1, j +
+                                                             1), (i +
+                                                                  1, j -
+                                                                  1), (i +
+                                                                       1, j +
+                                                                       1)]
             for new_i, new_j in all_neighbors:
                 if 0 <= new_i < n and 0 <= new_j < n:
                     yield new_i, new_j

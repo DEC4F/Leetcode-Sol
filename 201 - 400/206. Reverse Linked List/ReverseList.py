@@ -8,10 +8,11 @@ Reverse a singly linked list.
 #         self.val = x
 #         self.next = None
 
+
 class Solution:
     def reverseList_recur(self, head: ListNode) -> ListNode:
         pass
-        
+
     def reverseList_iter(self, head: ListNode) -> ListNode:
         """
         T(n) = O(n)

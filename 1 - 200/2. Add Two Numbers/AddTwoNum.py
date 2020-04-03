@@ -5,10 +5,13 @@ You may assume the two numbers do not contain any leading zero, except the numbe
 """
 
 # Definition for singly-linked list.
+
+
 class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
+
 
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
@@ -32,4 +35,3 @@ class Solution:
             curr = curr.next
         # skipping trailing 0 in the head
         return head.next
-

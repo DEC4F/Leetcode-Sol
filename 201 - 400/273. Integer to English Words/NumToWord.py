@@ -1,8 +1,10 @@
 """
 Convert a non-negative integer to its english words representation. Given input is guaranteed to be less than 2^31 - 1.
 """
+
+
 class Solution:
-    
+
     def __init__(self):
         self.nums = {
             1: 'One',
@@ -15,7 +17,7 @@ class Solution:
             8: 'Eight',
             9: 'Nine'
         }
-        
+
         self.ones = {
             10: 'Ten',
             11: 'Eleven',
@@ -28,7 +30,7 @@ class Solution:
             18: 'Eighteen',
             19: 'Nineteen'
         }
-        
+
         self.tens = {
             2: 'Twenty',
             3: 'Thirty',
@@ -39,7 +41,7 @@ class Solution:
             8: 'Eighty',
             9: 'Ninety'
         }
-    
+
     def numberToWords_div_and_conq(self, num: int) -> str:
         """
         T(n) = O(n) -- n is number of digits
@@ -52,7 +54,7 @@ class Solution:
         mil = (num - bil * 1000000000) // 1000000
         centi = (num - bil * 1000000000 - mil * 1000000) // 1000
         remainder = num - bil * 1000000000 - mil * 1000000 - centi * 1000
-        
+
         res = ''
         if bil != 0:
             res = self.three(bil) + ' Billion'
@@ -66,7 +68,7 @@ class Solution:
             res += ' ' if res else ''
             res += self.three(remainder)
         return res
-            
+
     def two(self, n):
         if n == 0:
             return ''
@@ -79,7 +81,7 @@ class Solution:
         if remainder != 0:
             return self.tens[tenth] + ' ' + self.nums[remainder]
         return self.tens[tenth]
-            
+
     def three(self, n):
         hundredth = n // 100
         remainder = n - hundredth * 100

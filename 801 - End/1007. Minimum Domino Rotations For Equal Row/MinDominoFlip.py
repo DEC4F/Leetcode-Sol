@@ -7,6 +7,8 @@ Return the minimum number of rotations so that all the values in A are the same,
 
 If it cannot be done, return -1.
 """
+
+
 class Solution:
     def minDominoRotations_greedy(self, A: List[int], B: List[int]) -> int:
         """

@@ -13,6 +13,7 @@ Reorder the logs so that all of the letter-logs come before any digit-log.  The 
 Return the final order of the logs.
 """
 
+
 class Solution:
     def reorderLogFiles(self, logs: List[str]) -> List[str]:
         """
@@ -21,6 +22,7 @@ class Solution:
         """
         if logs is None or len(logs) < 1:
             return []
+
         def compare(log: str) -> tuple:
             header, data = log.split(' ', 1)
             if data[0].isdigit():

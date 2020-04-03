@@ -1,6 +1,8 @@
 """
 Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
 """
+
+
 class Solution:
     def addDigits_iterative(self, num: int) -> int:
         """
@@ -11,7 +13,7 @@ class Solution:
             num, r = divmod(num, 10)
             num += r
         return num
-    
+
     def addDigits_digital_roots(self, num: int) -> int:
         """
         T(n) = O(1)

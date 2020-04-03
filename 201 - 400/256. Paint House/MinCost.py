@@ -3,6 +3,8 @@ There are a row of n houses, each house can be painted with one of the three col
 
 The cost of painting each house with a certain color is represented by a n x 3 cost matrix. For example, costs[0][0] is the cost of painting house 0 with color red; costs[1][2] is the cost of painting house 1 with color green, and so on... Find the minimum cost to paint all houses.
 """
+
+
 class Solution:
     def minCost_recursion_memo(self, costs: List[List[int]]) -> int:
         """
@@ -13,6 +15,7 @@ class Solution:
         if not costs or len(costs) < 1 or len(costs[0]) != 3:
             return ans
         memo = {}
+
         def paint(n: int, color: int) -> int:
             if (n, color) in memo:
                 return memo[(n, color)]

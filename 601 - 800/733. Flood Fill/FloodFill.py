@@ -7,8 +7,14 @@ To perform a "flood fill", consider the starting pixel, plus any pixels connecte
 
 At the end, return the modified image.
 """
+
+
 class Solution:
-    def floodFill_BFS(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+    def floodFill_BFS(self,
+                      image: List[List[int]],
+                      sr: int,
+                      sc: int,
+                      newColor: int) -> List[List[int]]:
         """
         T(n) = O(V + E) = O(n + 4n) = O(n) -- visit all nodes in worst case
         S(n) = O(n) -- size of queue
@@ -22,8 +28,11 @@ class Solution:
         q.append((sr, sc))
 
         def neighbors(r, c):
-            for (new_r, new_c) in ((r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)):
-                if 0 <= new_r < n and 0 <= new_c < m and image[new_r][new_c] == old_color and (new_r, new_c) not in q:
+            for (
+                    new_r, new_c) in (
+                    (r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)):
+                if 0 <= new_r < n and 0 <= new_c < m and image[new_r][new_c] == old_color and (
+                        new_r, new_c) not in q:
                     yield (new_r, new_c)
 
         while q:

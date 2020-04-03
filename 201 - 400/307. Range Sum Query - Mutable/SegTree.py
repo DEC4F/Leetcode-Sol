@@ -4,6 +4,7 @@ Given an integer array nums, find the sum of the elements between indices i and 
 The update(i, val) function modifies nums by updating the element at index i to val.
 """
 
+
 class NumArrayRecursive:
 
     def __init__(self, nums: List[int]):
@@ -11,7 +12,8 @@ class NumArrayRecursive:
             return
         self.nums = nums
         from math import ceil, log
-        self.stree = [0]*(2**(ceil(log(len(nums), 2))+1))
+        self.stree = [0] * (2**(ceil(log(len(nums), 2)) + 1))
+
         def _build_tree(node: int, start: int, end: int) -> None:
             """
             T(n) = O(n) -- traverse and store all nodes including range sum
@@ -23,10 +25,10 @@ class NumArrayRecursive:
             left_node, right_node = 2 * node + 1, 2 * node + 2
             mid = (start + end) // 2
             _build_tree(left_node, start, mid)
-            _build_tree(right_node, mid+1, end)
+            _build_tree(right_node, mid + 1, end)
             self.stree[node] = self.stree[left_node] + self.stree[right_node]
 
-        _build_tree(0, 0, len(nums)-1)
+        _build_tree(0, 0, len(nums) - 1)
 
     def update(self, i: int, val: int) -> None:
         def update_tree(node: int, start: int, end: int) -> None:
@@ -47,7 +49,7 @@ class NumArrayRecursive:
             else:
                 update_tree(right_node, mid + 1, end)
             self.stree[node] = self.stree[left_node] + self.stree[right_node]
-        update_tree(0, 0, len(self.nums)-1)
+        update_tree(0, 0, len(self.nums) - 1)
 
     def sumRange(self, i: int, j: int) -> int:
         def query(node: int, start: int, end: int) -> int:
@@ -64,9 +66,10 @@ class NumArrayRecursive:
             left_node, right_node = left_node, right_node = 2 * node + 1, 2 * node + 2
 
             L_sum = query(left_node, start, mid)
-            R_sum = query(right_node, mid+1, end)
+            R_sum = query(right_node, mid + 1, end)
             return L_sum + R_sum
-        return query(0, 0, len(self.nums)-1)
+        return query(0, 0, len(self.nums) - 1)
+
 
 class NumArrayIterative:
 

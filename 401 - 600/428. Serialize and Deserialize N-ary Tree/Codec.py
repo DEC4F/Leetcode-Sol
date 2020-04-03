@@ -5,6 +5,8 @@ class Node(object):
         self.val = val
         self.children = children
 """
+
+
 class Codec:
 
     def serialize(self, root):
@@ -26,7 +28,8 @@ class Codec:
         """
         if not data:
             return None
-        root = Node(data['value'], [self.deserialize(child) for child in data['children']])
+        root = Node(data['value'], [self.deserialize(child)
+                                    for child in data['children']])
         return root
 
 # Your Codec object will be instantiated and called as such:

@@ -13,21 +13,22 @@ Design an algorithm to serialize and deserialize a binary tree. There is no rest
 
 from collections import deque
 
+
 class Codec:
 
     def serialize(self, root):
         """Encodes a tree to a single string.
-        
+
         :type root: TreeNode
         :rtype: str
-        
+
         T(n) = O(n) -- traversed every node
         S(n) = O(n) -- queue stored every node
         """
         ans = []
         if root is None:
             return ans
-        dq = deque([root,])
+        dq = deque([root, ])
         while dq:
             node = dq.popleft()
             if node is None:
@@ -37,20 +38,20 @@ class Codec:
                 dq.append(node.left)
                 dq.append(node.right)
         return ans
-        
+
     def deserialize(self, data):
         """Decodes your encoded data to tree.
-        
+
         :type data: str
         :rtype: TreeNode
-        
+
         T(n) = O(n) -- traversed every node
         S(n) = O(n) -- queue stored every node
         """
         if data is None or len(data) == 0:
             return data
         root = TreeNode(data[0])
-        dq = deque([root,])
+        dq = deque([root, ])
         lv = 1
         while dq and lv < len(data):
             node = dq.popleft()

@@ -5,10 +5,11 @@ class DLNode():
         self.next = None
         self.prev = None
 
+
 class LRUCacheDoublyLinkedList:
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.cache = {} # key : DLNode pair
+        self.cache = {}  # key : DLNode pair
         self.head = DLNode(-1, -1)
         self.tail = DLNode(-1, -1)
         self.head.next = self.tail
@@ -32,7 +33,7 @@ class LRUCacheDoublyLinkedList:
         """
         node = self.cache.get(key)
         if not node:
-            if len(self.cache)+1 > self.capacity:
+            if len(self.cache) + 1 > self.capacity:
                 last = self.pop_tail()
                 self.cache.pop(last.key, last)
             node = DLNode(key, value)
@@ -41,26 +42,27 @@ class LRUCacheDoublyLinkedList:
         else:
             node.value = value
             self.move_to_front(node)
-        
+
     def add(self, node: DLNode) -> None:
         self.head.next.prev = node
         node.next = self.head.next
         self.head.next = node
         node.prev = self.head
-    
+
     def remove(self, node: DLNode) -> None:
         node.prev.next = node.next
         node.next.prev = node.prev
-    
+
     def move_to_front(self, node: DLNode) -> None:
         self.remove(node)
         self.add(node)
-    
+
     def pop_tail(self) -> DLNode:
         last = self.tail.prev
         self.remove(last)
         return last
-    
+
+
 class LRUCacheNSquare:
 
     """
@@ -94,16 +96,16 @@ class LRUCacheNSquare:
                 return
         new_pair = (key, value)
         if len(self.LRU) >= self.capacity:
-            self.LRU.pop(self.capacity-1)
+            self.LRU.pop(self.capacity - 1)
         idx = len(self.LRU)
         self.LRU[idx] = new_pair
         self.bubble_up(idx)
-    
+
     def bubble_up(self, i: int) -> None:
         """
         T(n) = O(n)
         S(n) = O(1)
         """
         while i != 0:
-            self.LRU[i], self.LRU[i-1] = self.LRU[i-1], self.LRU[i]
+            self.LRU[i], self.LRU[i - 1] = self.LRU[i - 1], self.LRU[i]
             i -= 1

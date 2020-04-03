@@ -10,6 +10,7 @@ To represent a cycle in the given linked list, we use an integer pos which repre
 #         self.val = x
 #         self.next = None
 
+
 class Solution:
 
     def detectCycle_seen(self, head: ListNode) -> ListNode:
@@ -27,7 +28,7 @@ class Solution:
             else:
                 seen.append(ptr)
             ptr = ptr.next
-        return None;
+        return None
 
     def detectCycle_fast_slow_ptr(self, head: ListNode) -> ListNode:
         """

@@ -11,12 +11,17 @@ According to the definition of LCA on Wikipedia: “The lowest common ancestor i
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
-    
+
     def __init__(self):
         self.ans = None
-    
-    def lowestCommonAncestor_recur(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+
+    def lowestCommonAncestor_recur(
+            self,
+            root: 'TreeNode',
+            p: 'TreeNode',
+            q: 'TreeNode') -> 'TreeNode':
         """
         T(n) = O(n) -- traverse all nodes in worst case
         S(n) = O(n) -- keepping recur stack for totally unbalanced binary tree
@@ -33,7 +38,7 @@ class Solution:
             mid = curr_node == p or curr_node == q
 
             # more than 1 var are true at LCA
-            if mid+left+right >= 2:
+            if mid + left + right >= 2:
                 self.ans = curr_node
 
             return mid or left or right

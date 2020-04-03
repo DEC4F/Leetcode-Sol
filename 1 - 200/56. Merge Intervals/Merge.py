@@ -2,6 +2,7 @@
 Given a collection of intervals, merge all overlapping intervals.
 """
 
+
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         """

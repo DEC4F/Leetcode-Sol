@@ -6,6 +6,7 @@ If you were only permitted to complete at most one transaction (i.e., buy one an
 Note that you cannot sell a stock before you buy one.
 """
 
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         """

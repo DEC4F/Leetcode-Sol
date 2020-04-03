@@ -11,10 +11,11 @@ For this problem, a path is defined as any sequence of nodes from some starting 
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
-    
+
     max_sum = float('-inf')
-    
+
     def maxPathSum(self, root: TreeNode) -> int:
         """
         T(n) = O(n) -- traversed all nodes
@@ -22,12 +23,12 @@ class Solution:
         """
         self.maxGain(root)
         return self.max_sum
-        
+
     def maxGain(self, node: TreeNode) -> int:
         if node is None:
-            return 0;
+            return 0
         left_gain = max(0, self.maxGain(node.left))
         right_gain = max(0, self.maxGain(node.right))
-        
+
         self.max_sum = max(self.max_sum, node.val + left_gain + right_gain)
         return node.val + max(left_gain, right_gain)

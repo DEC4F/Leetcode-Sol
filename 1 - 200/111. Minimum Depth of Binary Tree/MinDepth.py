@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     def minDepth(self, root: TreeNode) -> int:
         """

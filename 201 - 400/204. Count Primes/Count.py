@@ -1,6 +1,8 @@
 """
 Count the number of prime numbers less than a non-negative number, n.
 """
+
+
 class Solution:
     def countPrimes_TLE(self, n: int) -> int:
         """
@@ -38,4 +40,4 @@ class Solution:
                     res[j] = 0
                     j += i
             i += 1
-        return sum(res) - 2 # exclude 0 and 1
+        return sum(res) - 2  # exclude 0 and 1

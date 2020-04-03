@@ -11,6 +11,7 @@ Two binary trees are considered the same if they are structurally identical and 
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     def isSameTree_recur(self, p: TreeNode, q: TreeNode) -> bool:
         """
@@ -23,7 +24,9 @@ class Solution:
             return False
         if p.val != q.val:
             return False
-        return self.isSameTree_recur(p.left, q.left) and self.isSameTree_recur(p.right, q.right)
+        return self.isSameTree_recur(
+            p.left, q.left) and self.isSameTree_recur(
+            p.right, q.right)
 
     def isSameTree_iter(self, p: TreeNode, q: TreeNode) -> bool:
         """
@@ -33,7 +36,7 @@ class Solution:
         from collections import deque
         if not self.check(p, q):
             return False
-        
+
         dq = deque([(p, q)])
         while dq:
             p, q = dq.popleft()
@@ -43,7 +46,7 @@ class Solution:
                 dq.append((p.left, q.left))
                 dq.append((p.right, q.right))
         return True
-    
+
     def check(self, p: TreeNode, q: TreeNode) -> bool:
         if not p and not q:
             return True
