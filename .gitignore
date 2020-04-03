@@ -6,4 +6,4 @@
 **/.vscode
 
 # powershell scripts
-**/.ps1
+*.ps1

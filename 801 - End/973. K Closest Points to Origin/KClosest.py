@@ -21,7 +21,7 @@ class Solution:
         T(n) = O(nlogn) -- sorted points by distance
         S(n) = O(1) -- no extra space used
         """
-        return sorted(points, key=lambda p: self.dist(p))
+        return sorted(points, key=lambda p: self.dist(p))[:K]
 
     def kClosest_randomized_part(self,
                                  points: List[List[int]],

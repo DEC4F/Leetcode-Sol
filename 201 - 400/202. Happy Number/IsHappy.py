@@ -20,8 +20,9 @@ class Solution:
                 num, digit = divmod(num, 10)
                 res += digit ** 2
             return res
-        t_ptr, h_ptr = n, get_next(n)
-        while h_ptr != 1 and t_ptr != h_ptr:
-            t_ptr = get_next(t_ptr)
-            h_ptr = get_next(get_next(h_ptr))
-        return h_ptr == 1
+
+        slow, fast = n, get_next(n)
+        while fast != 1 and slow != fast:
+            slow = get_next(slow)
+            fast = get_next(get_next(fast))
+        return fast == 1
