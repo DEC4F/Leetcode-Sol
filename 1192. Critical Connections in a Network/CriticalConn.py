@@ -26,36 +26,36 @@ class Solution:
                  adj_list: List[List[int]],
                  scc_ids: List[int],
                  visited: List[bool],
-                 cur_rank: int,
-                 prev_node: int,
-                 cur_node: int) -> None:
+                 rank: int,
+                 prev: int,
+                 u: int) -> None:
         """
         T(n) = O(|V|) -- visiting all unvisited neighbors, at most |V|
         """
-        visited[cur_node] = True
-        scc_ids[cur_node] = cur_rank
+        visited[u] = True
+        scc_ids[u] = rank
 
-        for next_node in adj_list[cur_node]:
-            if prev_node == next_node:
+        for v in adj_list[u]:
+            if prev == v:
                 continue
             # recurse if hasn't visited this neighbor yet
-            if not visited[next_node]:
+            if not visited[v]:
                 self.find_scc(
                     res,
                     adj_list,
                     scc_ids,
                     visited,
-                    cur_rank + 1,
-                    cur_node,
-                    next_node)
+                    rank + 1,
+                    u,
+                    v)
             # update the scc_ids to group components of SCC
-            scc_ids[cur_node] = min(scc_ids[cur_node], scc_ids[next_node])
+            scc_ids[u] = min(scc_ids[v], scc_ids[u])
 
             # if scc_ids of the neighbor >= the initially assigned value
             # then its a cross edge
             # because two neighboring SCC would differ by at least 1 in SCC id.
-            if scc_ids[next_node] >= cur_rank + 1:
-                res.append([cur_node, next_node])
+            if scc_ids[v] >= rank + 1:
+                res.append([u, v])
 
     def find_adj_list(self, n: int,
                       connections: List[List[int]]) -> List[List[int]]:
@@ -63,7 +63,7 @@ class Solution:
         T(n) = O(|E|) -- looping through all edges to construct adjacency list
         """
         adj_list = [[] for _ in range(n)]
-        for conn in connections:
-            adj_list[conn[0]].append(conn[1])
-            adj_list[conn[1]].append(conn[0])
+        for u, v in connections:
+            adj_list[u].append(v)
+            adj_list[v].append(u)
         return adj_list
