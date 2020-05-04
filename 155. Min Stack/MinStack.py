@@ -14,7 +14,7 @@ class MinStack:
         """
         initialize your data structure here.
         """
-        self.stack = [] # (cur_node, min_node_so_far)
+        self.stack = []  # (cur_node, min_node_so_far)
 
     def push(self, x: int) -> None:
         if len(self.stack) < 1:

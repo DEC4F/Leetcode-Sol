@@ -24,6 +24,7 @@ class Solution:
         S(n) = O(n)
         """
         self.res = 0
+
         def dfs(node, acc, is_left) -> int:
             if not node:
                 return

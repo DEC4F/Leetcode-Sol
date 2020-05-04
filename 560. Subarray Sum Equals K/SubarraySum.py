@@ -1,6 +1,7 @@
 """
 Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
 """
+from collections import defaultdict
 
 
 class Solution:
@@ -40,16 +41,12 @@ class Solution:
         S(n) = O(n) -- cum sum dict
         """
         ans = 0
-        sum_count_map = {0: 1}
-        cum_sum = 0
+        mp = defaultdict(int)
+        s = 0
+        mp[s] = 1
         for i in range(len(nums)):
-            cum_sum += nums[i]
-            if cum_sum - k in sum_count_map.keys():
-                ans += sum_count_map[cum_sum - k]
-
-            if cum_sum in sum_count_map.keys():
-                sum_count_map[cum_sum] += 1
-            else:
-                sum_count_map[cum_sum] = 1
-
+            s += nums[i]
+            if mp[s - k] != 0:
+                ans += mp[s - k]
+            mp[s] += 1
         return ans

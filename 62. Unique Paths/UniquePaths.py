@@ -5,9 +5,17 @@ The robot can only move either down or right at any point in time. The robot is 
 
 How many possible unique paths are there?
 """
+from math import factorial as fact
 
 
 class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        """
+        T(n) = O(1)
+        S(n) = O(1)
+        """
+        return fact(m + n - 2) // (fact(m - 1) * fact(n - 1))
+
     def uniquePaths_two_d(self, m: int, n: int) -> int:
         """
         T(n) = O(mn) -- travered entire grid

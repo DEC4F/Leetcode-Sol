@@ -19,6 +19,7 @@ class Solution:
         if not root:
             return 0
         self.res = 0
+
         def dfs(node) -> int:
             if not node:
                 return 0

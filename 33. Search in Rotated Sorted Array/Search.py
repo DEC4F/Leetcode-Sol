@@ -12,30 +12,40 @@ Your algorithm's runtime complexity must be in the order of O(log n).
 
 
 class Solution:
-    def search_iter(self, nums: List[int], target: int) -> int:
-        """
-        T(n) = O(logn) -- iterative binary search
-        S(n) = O(1) -- const space
-        """
-        if nums is None or nums == []:
-            return -1
+    class Solution:
 
-        l = 0
-        r = len(nums) - 1
-        while l <= r:
-            mid = (l + r) // 2
+    def search(self, nums: List[int], target: int) -> int:
+        """
+        T(n) = O(logn)
+        S(n) = O(1)
+        """
+        if len(nums) < 1:
+            return -1
+        lo, hi = 0, len(nums) - 1
+        while lo <= hi:
+            mid = (lo + hi) // 2
             if nums[mid] == target:
                 return mid
-            elif nums[l] <= nums[mid]:
-                if nums[l] <= target and target < nums[mid]:
-                    r = mid - 1
+            # lo .. mid .. pivot .. hi
+            elif nums[mid] >= nums[lo]:
+                # lo .. target .. mid .. pivot .. hi
+                if nums[lo] <= target < nums[mid]:
+                    hi = mid - 1
+                # lo .. mid .. target .. pivot .. hi
+                # or
+                # lo .. mid .. pivot .. target .. hi
                 else:
-                    l = mid + 1
+                    lo = mid + 1
+            # lo .. pivot .. mid .. hi
             else:
-                if nums[mid] < target and target <= nums[r]:
-                    l = mid + 1
+                # lo .. pivot .. mid .. target .. hi
+                if nums[mid] < target <= nums[hi]:
+                    lo = mid + 1
+                # lo .. target .. pivot .. mid .. hi
+                # or
+                # lo .. pivot .. target .. mid .. hi
                 else:
-                    r = mid - 1
+                    hi = mid - 1
         return -1
 
     def search_recur(self, nums: List[int], target: int) -> int:

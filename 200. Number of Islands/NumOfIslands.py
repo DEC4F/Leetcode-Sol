@@ -3,6 +3,31 @@ Given a 2d grid map of '1's (land) and '0's (water), count the number of islands
 """
 
 
+class UnionFind:
+    def __init__(self, n, cnt):
+        self.par = [i for i in range(n)]
+        self.rank = [0] * n
+        self.res = cnt
+
+    def find(self, x):
+        if self.par[x] != x:
+            self.par[x] = self.find(self.par[x])
+        return self.par[x]
+
+    def union(self, x, y):
+        x_root, y_root = self.find(x), self.find(y)
+        if x_root == y_root:
+            return
+        if self.rank[x_root] > self.rank[y_root]:
+            self.par[y_root] = x_root
+        elif self.rank[y_root] > self.rank[x_root]:
+            self.par[x_root] = y_root
+        else:
+            self.par[y_root] = x_root
+            self.rank[x_root] += 1
+        self.res -= 1
+
+
 class Solution:
     def numIslands_bfs(self, grid: List[List[str]]) -> int:
         """
@@ -43,32 +68,15 @@ class Solution:
         """
         if len(grid) == 0 or len(grid[0]) == 0:
             return 0
-
-        r = len(grid)
-        c = len(grid[0])
-        ans = sum(grid[i][j] == '1' for i in range(r) for j in range(c))
-        par = [i for i in range(r * c)]
-
-        def find(x: int) -> int:
-            if x != par[x]:
-                par[x] = find(par[x])
-            return par[x]
-
-        def union(x: int, y: int) -> None:
-            nonlocal ans
-            a = find(x)
-            b = find(y)
-            if a == b:
-                return
-            par[b] = a
-            ans -= 1
-
-        for i in range(r):
-            for j in range(c):
-                if grid[i][j] == '1':
-                    idx_in_par = i * c + j
-                    if j < c - 1 and grid[i][j + 1] == '1':
-                        union(idx_in_par, idx_in_par + 1)
-                    if i < r - 1 and grid[i + 1][j] == '1':
-                        union(idx_in_par, idx_in_par + c)
-        return ans
+        n = len(grid)
+        m = len(grid[0])
+        uf = UnionFind(
+            n * m, sum(grid[i][j] == '1' for i in range(n) for j in range(m)))
+        for r in range(n):
+            for c in range(m):
+                if grid[r][c] == '1':
+                    if r + 1 < n and grid[r + 1][c] == '1':
+                        uf.union(m * r + c, m * (r + 1) + c)
+                    if c + 1 < m and grid[r][c + 1] == '1':
+                        uf.union(m * r + c, m * r + c + 1)
+        return uf.res

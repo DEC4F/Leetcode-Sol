@@ -17,7 +17,7 @@ class Solution:
             mp[c] = 1 << i
 
         # keep record of the earliest occurrence idx of each mask
-        seen = {0 : -1}
+        seen = {0: -1}
         for i, c in enumerate(s):
             mask ^= mp[c]
             seen.setdefault(mask, i)
@@ -32,7 +32,7 @@ class Solution:
         somehow slower probably due to find function
         """
         res = mask = 0
-        seen = {0 : -1}
+        seen = {0: -1}
         for i, c in enumerate(s):
             # equivalent to mp
             mask ^= 1 << ('aeiou'.find(c) + 1) >> 1

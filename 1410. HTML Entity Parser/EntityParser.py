@@ -24,10 +24,10 @@ class Solution:
         mp = {'&frasl;': '/',
               '&quot;': '\"',
               '&apos;': '\'',
-              '&amp;' : '&',
-              '&gt;'  : '>',
-              '&lt;'  : '<'
-             }
+              '&amp;': '&',
+              '&gt;': '>',
+              '&lt;': '<'
+              }
         i = 0
         while i < len(text):
             if text[i] == '&':

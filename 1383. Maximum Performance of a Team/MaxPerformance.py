@@ -7,7 +7,12 @@ from heapq import heappush, heappop
 
 
 class Solution:
-    def maxPerformance(self, n: int, speed: List[int], efficiency: List[int], k: int) -> int:
+    def maxPerformance(
+            self,
+            n: int,
+            speed: List[int],
+            efficiency: List[int],
+            k: int) -> int:
         """
         T(n) = O(nlogn + nlogk) sort + pq
         S(n) = O(n)
