@@ -24,10 +24,7 @@ class Solution:
             if r == 0:
                 return 0
             return max(dp(i, r - cost[i]) * 10 + (i + 1), dp(i + 1, r))
-        res = dp(0, target)
-        if res < 0:
-            res = 0
-        return str(res)
+        return str(max(dp(0, target), 0))
 
     def largestNumber_BU(self, cost: List[int], target: int) -> str:
         """
